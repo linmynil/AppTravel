@@ -6,22 +6,23 @@ import {
     ViewStyle,
     ImageStyle,
     Dimensions,
+    ImageSourcePropType
   } from "react-native";
   import React from "react";
   
   export type ImageViewProps = {
-    uri: string;
+    source: ImageSourcePropType;
     viewStyle?: StyleProp<ViewStyle>;
     imageStyle?: StyleProp<ImageStyle>;
   };
   
   const _ImageView: React.FC<ImageViewProps> = (props) => {
-    const { uri } = props;
+    const { source } = props;
     return (
       <View style={StyleSheet.flatten([_styles.container, props.viewStyle])}>
         <Image
           style={StyleSheet.flatten([_styles.image, props.imageStyle])}
-          source={{ uri: uri }}
+          source={source}
         />
       </View>
     );
@@ -29,7 +30,7 @@ import {
   
   const _styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex:0,
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
@@ -40,6 +41,7 @@ import {
       resizeMode: "stretch",
       width: Dimensions.get("window").width * 1,
       height: Dimensions.get("window").height * 1,
+      display:"flex"
     },
   });
   
