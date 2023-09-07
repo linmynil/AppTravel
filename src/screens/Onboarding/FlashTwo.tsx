@@ -10,7 +10,7 @@ const FlashTwo = () => {
     return (
         <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
-            <ImageView source={FLASHTWO} viewStyle={{ position: 'relative' }}></ImageView>
+            <ImageView source={FLASHTWO} viewStyle={{ position: 'relative'}} imageStyle={{height:Dimensions.get('window').height*1.05}} ></ImageView>
             <View style={_style.content}>
                 <ImageView source={LOGOWHITE} imageStyle={{ height: 20, width: 70 }} viewStyle={{ justifyContent: 'flex-start', marginLeft: 28 }}></ImageView>
                 <TextView title="Lets explore the world" textStyle={{ color: "#FFFFFF", fontSize: 45, fontWeight: "500" }} styleContainer={{ width: 320, marginLeft: 28 }}></TextView>
@@ -27,7 +27,7 @@ const FlashTwo = () => {
                     <View style={_style.line}>
                     </View>
                 </View>
-                <Button title='Next' styleView={{marginBottom:40}} ></Button>
+                <Button title='Next' styleView={{marginBottom:40}} stylePressable={{width:330}} ></Button>
             </View>
 
         </View>
@@ -37,7 +37,7 @@ const FlashTwo = () => {
 }
 const _style = StyleSheet.create({
     container: {
-        // flex: 1
+        flex: 1
     },
     content: {
         backgroundColor: 'rgba(52, 52, 52, 0.4)',
@@ -45,8 +45,7 @@ const _style = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-end',
         width: Dimensions.get("window").width * 1,
-        height: Dimensions.get("window").height * 1,
-
+        height: Dimensions.get("window").height * 1.05,
     },
     row: {
         flexDirection: 'row',

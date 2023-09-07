@@ -26,7 +26,7 @@ const Successfully = () => {
                     <TextView title='After this you can explore any place you want enjoy it!' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                 </View>
             </View>
-            <Button title="Let's Explore" styleView={{ marginBottom: 40 }} ></Button>
+            <Button title="Let's Explore" styleView={{marginBottom:20}} stylePressable={{width:330}} ></Button>
         </>
 
     );
@@ -41,8 +41,7 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        marginHorizontal:30
     },
 
 })

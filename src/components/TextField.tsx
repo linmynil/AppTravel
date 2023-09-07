@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { StyleProp, StyleSheet, TextInput, TextStyle, ViewStyle, Animated, Easing, TouchableOpacity, Image, View } from 'react-native';
+import { StyleProp, StyleSheet, TextInput, TextStyle, ViewStyle, Animated, Easing, TouchableOpacity, Image, View, Text } from 'react-native';
 import { ImageView } from './ImageView';
-import { HIDEEYE, SHOWEYE } from '../../assets/images';
+import { DOWN, HIDEEYE, SHOWEYE, UP } from '../../assets/images';
 
 
 export type TextInputProps = {
@@ -12,18 +12,25 @@ export type TextInputProps = {
   textStyle?: StyleProp<TextStyle>;
   labelcolor?: string;
   hidden?: string;
+  stylearrow?:StyleProp<ViewStyle>;
+  text?:string
 };
 
 const _TextField: React.FC<TextInputProps> = (props) => {
 
-  const { label, onChange, value, labelcolor = '#FCD240', hidden } = props;
+  const { label, onChange, value, text, labelcolor = '#FCD240', hidden } = props;
   const transY = useRef(new Animated.Value(0)).current;
   const borderWidth = useRef(new Animated.Value(0)).current;
   const [hidePassword, setHidePassword] = useState(true);
+  const [select, setSelect] = useState(true);
 
   const managePasswordVisibility = () => {
     setHidePassword(!hidePassword);
     console.log(hidePassword)
+  };
+  const handleSelect = () => {    
+    setSelect(!select);
+    console.log(select)
   };
 
   const handleFocus = () => {
@@ -109,7 +116,7 @@ const _TextField: React.FC<TextInputProps> = (props) => {
     </View>
 
   ) : (
-    <View style={_styles.container}>
+    <View style={[_styles.container,{ marginBottom: select ? 0 : 35 }]}>
       <Animated.View style={StyleSheet.flatten([_styles.styleInput, { borderColor }, props.styleView])}>
         <Animated.View style={[_styles.stylelabel, { transform: [{ translateY: transY }, { translateX: transX }] }]}>
           <Animated.Text style={StyleSheet.flatten([_styles.styleTextLabel, { color: labelColoranimated }, props.textStyle])}>{label}</Animated.Text>
@@ -120,6 +127,20 @@ const _TextField: React.FC<TextInputProps> = (props) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={StyleSheet.flatten([_styles.arrowbtn,props.stylearrow])}
+          onPress={handleSelect}>
+          <ImageView
+            source={select
+              ? DOWN
+              : UP}
+            imageStyle={_styles.arrow}
+          />
+        </TouchableOpacity>
+        <View style={[_styles.select,{ opacity: select ? 0 : 1 },]}>
+          <Text>{text}</Text>
+        </View>
       </Animated.View>
     </View>
 
@@ -163,12 +184,34 @@ const _styles = StyleSheet.create({
   },
   visibilityBtn: {
     position: 'absolute',
-    right: 15,
-    marginTop: 12
+    right: 17,
+    top: 12
+  },
+  arrowbtn: {
+    position: 'absolute',
+    right: 17,
+    top: 18,
+    display:'flex',
+    opacity:0
   },
   icon: {
     width: 24,
     height: 24,
+  },
+  arrow: {
+    width: 16,
+    height:16,
+  },
+  select:{
+     borderWidth:1,
+     borderColor:"#FCD240",
+     marginTop:15,
+     borderRadius:10,
+     height:50,
+     width:300,
+     justifyContent:'center',
+     alignItems:'flex-start',
+     paddingLeft:30,
   }
 });
 

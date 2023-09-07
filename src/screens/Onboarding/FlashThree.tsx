@@ -8,9 +8,9 @@ import { Button } from '../../components/Button';
 
 const FlashThree = () => {
     return (
-        <View >
+        <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
-            <ImageView source={FLASHTHREE} viewStyle={{ position: 'relative' }}></ImageView>
+            <ImageView source={FLASHTHREE} viewStyle={{ position: 'relative'  }} imageStyle={{height:Dimensions.get('window').height*1.05}}></ImageView>
             <View style={_style.content}>
                 <ImageView source={LOGOWHITE} imageStyle={{ height: 20, width: 70 }} viewStyle={{ justifyContent: 'flex-start', marginLeft: 28 }}></ImageView>
                 <TextView title="Visit tourist attractions" textStyle={{ color: "#FFFFFF", fontSize: 45, fontWeight: "500" }} styleContainer={{ width: 320, marginLeft: 28 }}></TextView>
@@ -27,7 +27,7 @@ const FlashThree = () => {
                     <View style={_style.line}>
                     </View>
                 </View>
-                <Button title='Next' styleView={{ marginBottom: 40 }} ></Button>
+                <Button title='Next' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
             </View>
 
         </View>
@@ -36,13 +36,16 @@ const FlashThree = () => {
     );
 }
 const _style = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     content: {
         backgroundColor: 'rgba(52, 52, 52, 0.4)',
         position: 'absolute',
         flexDirection: 'column',
         justifyContent: 'flex-end',
         width: Dimensions.get("window").width * 1,
-        height: Dimensions.get("window").height * 1,
+        height: Dimensions.get("window").height * 1.05,
 
     },
     row: {

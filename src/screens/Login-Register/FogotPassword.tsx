@@ -32,7 +32,7 @@ const FogotPassword = () => {
                     <TextView title="Forgot Your Password? " ></TextView>
                     <TextField label='Email' value={email} onChange={handleChangeEmail} styleView={{ marginTop: 50 }}></TextField>
                 </View>
-                <Button title='Submit' styleView={{ marginBottom: 40 }} ></Button>
+                <Button title='Submit' styleView={{ marginBottom: 40}}stylePressable={{width:330}} ></Button>
             </View>
         </KeyboardAvoidingView>
 

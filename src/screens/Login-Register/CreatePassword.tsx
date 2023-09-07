@@ -37,7 +37,7 @@ const CreatePassword = () => {
                     imageStyle={_styles.line}
                     viewStyle={{ justifyContent: 'flex-start' }}
                 />
-                <Button title='Verification' styleView={{ marginBottom: 40 }} ></Button>
+                <Button title='Verification' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
             </View>
         </KeyboardAvoidingView>
 

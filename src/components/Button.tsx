@@ -1,4 +1,5 @@
 import {
+  Dimensions,
     Pressable,
     StyleProp,
     StyleSheet,
@@ -52,8 +53,8 @@ import {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
+      width: Dimensions.get("window").width * 1,
       height: 55,
-      width:330,
       borderWidth:0,
       borderRadius: 15,
       backgroundColor:"#FCD240"

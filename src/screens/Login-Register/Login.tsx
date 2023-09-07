@@ -23,7 +23,7 @@ const Login = () => {
         setEmail(value);
     }
     return (
-        <>
+        <View style={_styles.container}>
             <StatusBar
                 animated={true}
                 backgroundColor="#FFFFFF"
@@ -51,8 +51,8 @@ const Login = () => {
                 <TextView title='Fogot password' textStyle={{ color: "#c7c7c7", fontSize: 15, fontWeight: "normal" }}></TextView>
             </View>
 
-            <Button title='Create Account' stylePressable={{ backgroundColor: 'white', borderColor: "#d6d6d6", borderWidth: 1 }} styleView={{marginBottom:20}}></Button>
-            <Button title='Sign in' ></Button>
+            <Button title='Create Account' stylePressable={{ backgroundColor: 'white', borderColor: "#d6d6d6", borderWidth: 1,width:330 }} styleView={{marginBottom:20}} ></Button>
+            <Button title='Sign in' styleView={{marginBottom:20}} stylePressable={{width:330}}></Button>
 
             <View style={[_styles.row,{marginTop:40}]}>
                 <View style={_styles.card}>
@@ -77,11 +77,14 @@ const Login = () => {
 
 
 
-        </>
+        </View>
 
     );
 }
 const _styles = StyleSheet.create({
+    container:{
+        marginHorizontal:30
+    },
     icon: {
         height: 35,
         width: 120,

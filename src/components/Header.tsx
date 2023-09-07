@@ -9,13 +9,14 @@ export type HeaderProps = {
   icon: ImageRequireSource,
   styleTitle?:StyleProp<TextStyle>,
   styleIcon?:StyleProp<ImageStyle>,
+  styleView?:StyleProp<ViewStyle>;
   onPressBack?:()=>void;
   onPressIcon?:()=> void;
 }
  const _Header: React.FC<HeaderProps>=(props)=>{
     const {title, icon, onPressBack, onPressIcon} = props;
     return(
-        <View style={_style.container}>
+        <View style={StyleSheet.flatten([_style.container,props.styleView])}>
             <Pressable onPress={onPressBack}>
                 <Image source={ARROW} style={_style.back}></Image>
             </Pressable>
@@ -33,16 +34,18 @@ export type HeaderProps = {
         alignItems:'center',
         justifyContent:'space-between',
         height: 55,
-        
+        marginBottom:20,
+        marginTop:20
     },
     back:{
       height:24,
       width:24
     },
     text:{
-      fontSize:16,
+      fontSize:17,
       color:'black',
-      opacity:1
+      opacity:1,
+      fontWeight:'600'
     },
     icon:{
       height:24,

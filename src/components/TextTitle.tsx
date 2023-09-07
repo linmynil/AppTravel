@@ -23,7 +23,8 @@ const _style = StyleSheet.create({
       flexDirection:'row',
       justifyContent:'space-between',
       alignItems:'center',
-      marginTop:30
+      marginTop:30,
+      marginBottom:30
     },
     text:{
       fontSize:18,

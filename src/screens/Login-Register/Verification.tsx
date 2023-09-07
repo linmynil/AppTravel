@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/Button';
-import { TextField } from '../../components/TextField';
 import { KeyboardAvoidingView, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
@@ -53,7 +52,7 @@ const Verification = () => {
                     imageStyle={_styles.line}
                     viewStyle={{ justifyContent: 'flex-start' }}
                 />
-                <Button title='Submit' styleView={{ marginBottom: 40 }} ></Button>
+                <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
             </View>
         </KeyboardAvoidingView>
 

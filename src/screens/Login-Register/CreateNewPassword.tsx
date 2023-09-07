@@ -3,7 +3,6 @@ import { Button } from '../../components/Button';
 import { TextField } from '../../components/TextField';
 import { KeyboardAvoidingView, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { TextView } from '../../components/TextView';
-import { ImageView } from '../../components/ImageView';
 import { ARROW } from '../../../assets/images';
 import { Header } from '../../components/Header';
 const CreateNewPassword = () => {
@@ -35,7 +34,7 @@ const CreateNewPassword = () => {
 
                 </View>
 
-                <Button title='Save' styleView={{ marginBottom: 40 }} ></Button>
+                <Button title='Save' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
             </View>
         </KeyboardAvoidingView>
 

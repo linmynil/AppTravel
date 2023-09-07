@@ -18,7 +18,7 @@ type ItemProps = {
 };
 const Item = ({ item, onPress }: ItemProps) => {
     const check = item.check
-    return (<TouchableOpacity onPress={onPress} style={[_styles.item, { borderColor: check ? '#17AF83' : '#f0f0f0' }]}>
+    return (<TouchableOpacity onPress={onPress} style={[_styles.item,{ borderWidth: check ? 2 : 1 }, { borderColor: check ? '#17AF83' : '#f0f0f0' }]}>
         <View>
         <ImageView
             source={item.image}
@@ -101,6 +101,7 @@ const FavoritePlace = () => {
     };
 
     return (
+       
         <View style={_styles.container}>
             <StatusBar
                 animated={true}
@@ -108,8 +109,8 @@ const FavoritePlace = () => {
                 barStyle='dark-content'
             />
             <TextView title="Where is your favorite place to explore? " styleContainer={{marginHorizontal: 30}}></TextView>
-            <View style={_styles.header}>
-                
+           
+            <View style={_styles.header}>       
                 <FlatList
                     data={data}
                     renderItem={renderItem}
@@ -117,7 +118,9 @@ const FavoritePlace = () => {
                     numColumns={2}
                 />
             </View>
-            <Button title='Submit' styleView={{ marginBottom: 40 }} ></Button>
+        
+            
+            <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
         </View>
 
     );
