@@ -6,6 +6,8 @@ export const IG = require('./instagram.png');
 export const FB = require('./facebook.png');
 export const GG = require('./google.png');
 export const ARROW = require('./arrow-left.png');
+export const ARROWW = require('./arroww.png');
+export const ARROWD = require('./arrowdown.png');
 export const LINE = require('./line.png');
 export const SUCCESSFULLY = require('./successfully.jpg');
 export const TICK = require('./tick.png');
@@ -23,6 +25,7 @@ export const HEARTW = require('./heartwhite.png');
 export const PICONE = require('./pic1.jpg');
 export const TICKDETAIL = require('./tickdetail.png');
 export const LOCATION = require('./location.png');
+export const STAR = require('./star.png');
 export const ONESTAR = require('./onestar.png');
 export const TWOSTAR = require('./twostar.png');
 export const THREESTAR = require('./threestar.png');
@@ -54,6 +57,16 @@ export const LANGUAGE = require('./global.png');
 export const NOTIONE = require('./notifione.png');
 export const PROMO = require('./promo.png');
 export const NOTITWO = require('./booking.png');
+export const MAP = require('./map.jpg');
+export const BROMO = require('./bromo.jpg');
+export const FILTER = require('./filter.png');
+export const DONE= require('./done.png');
+export const RANGE= require('./range.png');
+
+
+
+
+
 
 
 

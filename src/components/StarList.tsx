@@ -4,14 +4,13 @@ import { ImageView } from './ImageView';
 import { TextView } from './TextView';
 import { TICK } from '../../assets/images';
 
-type ItemData = {
+type ItemStar = {
     id: string;
     image: ImageSourcePropType;
     check: boolean;
-    title: string;
 };
 type ItemProps = {
-    item: ItemData;
+    item: ItemStar;
     onPress: () => void;
 };
 const Item = ({ item, onPress }: ItemProps) => {
@@ -22,15 +21,14 @@ const Item = ({ item, onPress }: ItemProps) => {
             source={item.image}
             imageStyle={[_styles.icon]}
         />
-        <TextView title={item.title} textStyle={{ color: "#000000", fontSize: 17, fontWeight: "500" }} styleContainer={{ alignItems: 'center',marginTop:-3, }}></TextView>      
         </View>
         <ImageView
             source={TICK}
             imageStyle={[_styles.tick, { display: check ? "flex" : "none" }]}
             viewStyle={{
              position: 'absolute',
-                right: 25,
-                top: 30,
+                right: 20,
+                top: 18,
              
             }}
         />
@@ -39,17 +37,17 @@ const Item = ({ item, onPress }: ItemProps) => {
 };
 
 export type PaymentListProps={
-    data:ItemData[];
+    data:ItemStar[];
     onPress:(index:number)=>void;
 }
 
-const _PaymentList: React.FC<PaymentListProps> = (props) => {
+const _StarList: React.FC<PaymentListProps> = (props) => {
     const{data,onPress} = props; 
     return (
         <View>
            <ScrollView
                 showsHorizontalScrollIndicator={false}>
-                {data.map((item: ItemData, index: number) => (
+                {data.map((item: ItemStar, index: number) => (
                     <Item item={item} key={item.id} onPress={() => {onPress(index)}} />
                 ))}
             </ScrollView>
@@ -60,22 +58,21 @@ const _PaymentList: React.FC<PaymentListProps> = (props) => {
 
 const _styles=StyleSheet.create({ 
     icon: {
-        width: 30,
-        height: 30,
+        width: 140,
+        height: 20,
         marginRight:25
     },
     tick: {
         width: 24,
         height: 24,
         display: 'none',
-
     },
     item: {
-        marginTop:35,
+        marginBottom:20,
         borderColor: "#f1f1f1",
         borderWidth: 1,
         width: Dimensions.get('window').width * 0.84,
-        height:90,
+        height:65,
         borderRadius: 20,
         flexDirection:'row',
         alignItems:'center',
@@ -88,4 +85,4 @@ const _styles=StyleSheet.create({
     }
 })
 
-export const PaymentList = React.memo(_PaymentList)
+export const StarList = React.memo(_StarList)

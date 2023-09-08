@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleProp, StyleSheet, Text, TextProps, View } from 'react-native';
+import { Dimensions, StyleProp, StyleSheet, Text, TextProps, TextStyle, View, ViewStyle } from 'react-native';
 import { Button } from './Button';
 
 export type PaymentProps = {
@@ -7,8 +7,9 @@ export type PaymentProps = {
     price?: string;
     text?:string;
     left?: string;
-    textStyle?:StyleProp<TextProps>;
-    priceStyle?:StyleProp<TextProps>;
+    textStyle?: StyleProp<TextStyle>;
+    priceStyle?:StyleProp<TextStyle>;
+    viewContainer?:StyleProp<ViewStyle>
     onPressLeft?: () => void;
     onPressRight?: () => void;
 }
@@ -17,7 +18,7 @@ const _Payment: React.FC<PaymentProps> = (props) => {
     const { title, price, left,text, onPressLeft, onPressRight } = props;
     return left ?
         (
-            <View  style={_styles.container}>
+            <View style={StyleSheet.flatten([_styles.container,props.viewContainer])}>
                 <Button title={left}
                     stylePressable={{ width: Dimensions.get('window').width * 0.4, backgroundColor: 'white', borderColor: "#d6d6d6", borderWidth: 1 }}
                      onPress={onPressLeft}></Button>
@@ -26,7 +27,7 @@ const _Payment: React.FC<PaymentProps> = (props) => {
             </View >
         ) :
         (
-            <View style={_styles.container}>
+            <View style={StyleSheet.flatten([_styles.container,props.viewContainer])}>
                 <View style={_styles.row}>
                     <Text style={StyleSheet.flatten([_styles.text,props.textStyle])}>{text}</Text>
                     <Text style={StyleSheet.flatten([_styles.price,props.priceStyle])}>{price}</Text>
@@ -44,8 +45,7 @@ const _styles = StyleSheet.create({
       alignItems: 'center',
       width:Dimensions.get('window').width*0.86,
       height:90,
-      backgroundColor:'#FFFFFF',
-
+      backgroundColor:'#FFFFFF'
     },
     row:{
         flexDirection:'row',
@@ -60,7 +60,7 @@ const _styles = StyleSheet.create({
     },
     price:{
         color:'#F7623D',
-        fontSize:14,
+        fontSize:15,
         fontWeight:'bold'
     }
 })

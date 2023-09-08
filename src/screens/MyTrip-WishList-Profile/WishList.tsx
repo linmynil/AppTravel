@@ -17,7 +17,7 @@ const WishList = () => {
     const handleSearch = () => {
 
     }
-    type ItemData = {
+    type ItemPopular = {
         id: string;
         image: ImageSourcePropType;
         title: string;
@@ -27,7 +27,7 @@ const WishList = () => {
         text:string;
         check: boolean;
     };
-    const [data, setData] = React.useState<ItemData[]>(
+    const [data, setData] = React.useState<ItemPopular[]>(
         [{
             id: '1',
             image: PICONE,
@@ -59,7 +59,7 @@ const WishList = () => {
             check: true,
         }]
     );
-    const handleSelectMethods = (index: number) => {
+    const handleSelectPopular = (index: number) => {
         const item = data[index];
         item.check = !item.check;
         const newData = [...data];
@@ -70,7 +70,7 @@ const WishList = () => {
         <View style={_styles.container}>
             <TextView title="Your Wishlist " textStyle={{ fontSize: 30 }} styleContainer={{ marginTop: 30 }} ></TextView>
             <SearchView placeholder='Search destination' value={search} onChangetext={handleChangeText} onPress={handleSearch}></SearchView>
-            <PopularList data={data} onPress={handleSelectMethods}></PopularList>
+            <PopularList data={data} onPress={handleSelectPopular}></PopularList>
         </View>
     );
 }

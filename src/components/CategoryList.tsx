@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, ImageSourcePropType, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, ImageSourcePropType, ScrollView, StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { ImageView } from './ImageView';
 import { TextView } from './TextView';
 
@@ -20,7 +20,7 @@ const Item = ({ item, onPress }: ItemProps) => {
     <TouchableOpacity onPress={onPress} style={[_styles.item, { borderColor: check ? '#17AF83' : '#f0f0f0' },{ borderWidth: check ? 2 : 1 }]}>
         <ImageView
             source={item.image}
-            imageStyle={{width:24,height:24}}
+            imageStyle={{width:35,height:35}}
         />
         <TextView title={item.title} textStyle={{ color: "#000000", fontSize: 17, fontWeight: "500" }} styleContainer={{marginTop:0 }}></TextView>            
     </TouchableOpacity>)
@@ -30,12 +30,13 @@ const Item = ({ item, onPress }: ItemProps) => {
 export type ScrollListProps = {
     data:ItemData[];
     onPress:(index:number)=>void;
+    viewStyle?:StyleProp<ViewStyle>
 }
 
 const _List: React.FC<ScrollListProps> = (props) => {
     const {data,onPress } = props;
     return (
-        <View >
+        <View style={StyleSheet.flatten([_styles.container,props.viewStyle])} >
             <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}>
@@ -48,11 +49,12 @@ const _List: React.FC<ScrollListProps> = (props) => {
 }
 
 const _styles = StyleSheet.create({
+    container:{},
     item: {
         marginHorizontal: 5,
         borderColor: "#f1f1f1",
         borderWidth: 1,
-        width: Dimensions.get('window').width * 0.29,
+        width: Dimensions.get('window').width * 0.35,
         height:55,
         borderRadius: 20,
         flexDirection:'row',
@@ -62,4 +64,4 @@ const _styles = StyleSheet.create({
 
 
 })
-export const ScrollList = React.memo(_List);
+export const CategoryList = React.memo(_List);

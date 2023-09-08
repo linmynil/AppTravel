@@ -27,6 +27,10 @@ import Mytrip from './src/screens/MyTrip-WishList-Profile/Mytrip';
 import WishList from './src/screens/MyTrip-WishList-Profile/WishList';
 import Profile from './src/screens/MyTrip-WishList-Profile/Profile';
 import Notification from './src/screens/MyTrip-WishList-Profile/Notification';
+import Home from './src/screens/Home-Detail/Home';
+import DetailFavorite from './src/screens/Home-Detail/DetailFavorite';
+import Category from './src/screens/Search-Category/Category';
+import Filter from './src/screens/Search-Category/Filter';
 
 
 const App = () => {
@@ -59,7 +63,12 @@ const App = () => {
         {/* <Mytrip></Mytrip> */}
         {/* <WishList></WishList> */}
         {/* <Profile></Profile> */}
-        <Notification></Notification>
+        {/* <Notification></Notification> */}
+        {/* <Home></Home> */}
+        {/* <DetailFavorite></DetailFavorite> */}
+        {/* <Category></Category> */}
+        <Filter></Filter>
+
       </SafeAreaView>
     </TouchableWithoutFeedback>
 
@@ -68,7 +77,7 @@ const App = () => {
 const _styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',   
+    backgroundColor: '#FFFFFF',
   },
 });
 export default App;

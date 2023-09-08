@@ -1,11 +1,14 @@
 import React from 'react';
 import { Header } from '../../components/Header';
-import { BEACH, CAR, FLASHFOUR, FLASHTHREE, FLASHTWO, FLY, FOREST, FOURSTAR, HEART, HOTEL, LOCATION, MOUNTIAN, PICONE, TICKDETAIL } from '../../../assets/images';
-import { Dimensions, ImageSourcePropType, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {  CAR, FIVESTAR, FLASHFOUR, FLASHTHREE, FLASHTWO, FLY, FOREST, FOURSTAR, HEART, HOTEL, LOCATION, MAP, MOUNTIAN, PICONE, TICKDETAIL } from '../../../assets/images';
+import { Dimensions, Image, ImageSourcePropType, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ImageView } from '../../components/ImageView';
 import { TextView } from '../../components/TextView';
 import { TextTitle } from '../../components/TextTitle';
 import { ScrollList } from '../../components/ScrollList';
+import { Button } from '../../components/Button';
+import { Total } from '../../components/Total';
+import { ReviewList } from '../../components/ReviewList';
 type ItemData = {
     id: string;
     image: ImageSourcePropType;
@@ -42,6 +45,44 @@ const Detail = () => {
         newData[index] = item;
         setData(newData);
     }
+
+
+    type ItemReview = {
+        id: string,
+        avatar:ImageSourcePropType;
+        name: string,
+        star: ImageSourcePropType;
+        day: string,
+        comment:string
+    }
+    const [review, setReview] = React.useState<ItemReview[]>(
+        [{
+            id: '1',
+            avatar:PICONE,
+            name:'Yelena Belova',
+            star:FIVESTAR,
+            day:'Today',
+            comment:"Pretty nice. The entrance is quite far from the parking lot but wouldn't be much of a problem if it wasnt raining. Love the interior :)"
+        },
+        {
+            id: '2',
+            avatar:PICONE,
+            name:'Mark Travor',
+            star:FIVESTAR,
+            day:'Today',
+            comment:"A really great place and amazing work place. I really love staying there! Will definitely come back!"
+        },
+        {
+            id: '3',
+            avatar:PICONE,
+            name:'James Mulner',
+            star:FIVESTAR,
+            day:'Today',
+            comment:"Ketut offering supports to almost every cases, always reachable and was really helpful, definitely value for money stay!"
+        },
+
+    ]
+    );
     return (
         <ScrollView style={_styles.full}>
             <View style={_styles.container}>
@@ -92,6 +133,10 @@ const Detail = () => {
                     </View>
                 </View>
                 <TextTitle left="Location" styleright={{ opacity: 0 }}></TextTitle>
+                <Image source={MAP} style={_styles.map}></Image>
+                <TextTitle left="Review" star='(99)' right='4,8'></TextTitle>
+                <ReviewList data={review}></ReviewList>
+                <Total title='Booking' price=' /Person' text='$750.00' textStyle={{color:'#F7623D',fontSize:15,fontWeight:'bold'}} priceStyle={{ color:'#BABABA',fontSize:13, marginRight:7, fontWeight:'normal'}}></Total>
             </View>
         </ScrollView>
 
@@ -133,7 +178,12 @@ const _styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
-    }
+    },
+    map:{
+        width:Dimensions.get('window').width *0.84,
+        height:160,
+        borderRadius:20
+    },
 
 
 })

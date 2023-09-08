@@ -5,7 +5,7 @@ import { ImageView } from './ImageView';
 import { TextView } from './TextView';
 import { HEART, HEARTW } from '../../assets/images';
 
-type ItemData = {
+type ItemPopular = {
     id: string;
     image: ImageSourcePropType;
     title: string;
@@ -16,7 +16,7 @@ type ItemData = {
     check: boolean;
 };
 type ItemProps = {
-    item: ItemData;
+    item: ItemPopular;
     onPress: () => void;
 };
 const Item = ({ item, onPress }: ItemProps) => {
@@ -55,7 +55,7 @@ const Item = ({ item, onPress }: ItemProps) => {
 };
 
 export type PopularListProps = {
-    data: ItemData[];
+    data: ItemPopular[];
     onPress: (index: number) => void;
 }
 
@@ -65,7 +65,7 @@ const _PopularList: React.FC<PopularListProps> = (props) => {
         <View>
             <ScrollView
                 showsHorizontalScrollIndicator={false}>
-                {data.map((item: ItemData, index: number) => (
+                {data.map((item: ItemPopular, index: number) => (
                     <Item item={item} key={item.id} onPress={() => { onPress(index) }} />
                 ))}
             </ScrollView>
