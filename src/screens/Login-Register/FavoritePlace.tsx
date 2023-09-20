@@ -4,6 +4,8 @@ import { FlatList, ImageSourcePropType, StatusBar, StyleSheet,TouchableOpacity, 
 import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
 import { BEACH, CAMPING, FISHING, FOREST,MOUNTIAN, OCEAN, TICK } from '../../../assets/images';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
 
 type ItemData = {
     id: string;
@@ -40,7 +42,9 @@ const Item = ({ item, onPress }: ItemProps) => {
     </TouchableOpacity>)
 
 };
-const FavoritePlace = () => {
+type PropsType = NativeStackScreenProps<StackHome, "FavoritePlace">;
+const FavoritePlace :React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [data, setData] = React.useState<ItemData[]>(
         [{
@@ -120,7 +124,9 @@ const FavoritePlace = () => {
             </View>
         
             
-            <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+            <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}}
+             onPress={() => {navigation.navigate("TabNavigator");}}
+             ></Button>
         </View>
 
     );
@@ -138,6 +144,8 @@ const _styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor:'#FFFFFF',
+        paddingTop:30
     },
     header: {
         flex: 1,

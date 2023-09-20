@@ -35,7 +35,7 @@ const Mytrip = () => {
     );
     return (
       <View style={_styles.container}>
-        <TextView title="List Your Trip " textStyle={{fontSize:30}} styleContainer={{marginTop:30}} ></TextView>
+        <TextView title="List Your Trip " textStyle={{fontSize:30}} styleContainer={{marginTop:50}} ></TextView>
         <SearchView placeholder='Search destination' value={search} onChangetext={handleChangeText} onPress={handleSearch}></SearchView>
         <ListTip data={data}></ListTip>
       </View>  
@@ -44,7 +44,8 @@ const Mytrip = () => {
 const _styles = StyleSheet.create({
     container:{
         flex:1,
-        marginHorizontal:30
+        paddingHorizontal:30,
+        backgroundColor:"#FFFFFF"
     },
     
 })

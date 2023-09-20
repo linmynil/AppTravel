@@ -6,7 +6,11 @@ import { ImageView } from '../../components/ImageView';
 import { ARROW, LINE } from '../../../assets/images';
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { Header } from '../../components/Header';
-const Verification = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Verification">;
+const Verification:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [OTP, setOTP] = useState<string>('');
 
@@ -25,7 +29,7 @@ const Verification = () => {
                     barStyle='dark-content'
                 />
                 <View style={_styles.header}>
-                <Header title='' icon={ARROW} styleIcon={{opacity:0}}></Header>
+                <Header title='' icon={ARROW} styleIcon={{opacity:0}}  onPressBack={() => navigation.goBack()}></Header>
                     <TextView title='Create Your Account' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                     <TextView title="OTP Vetification " ></TextView>
                         <OTPInputView
@@ -52,7 +56,7 @@ const Verification = () => {
                     imageStyle={_styles.line}
                     viewStyle={{ justifyContent: 'flex-start' }}
                 />
-                <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+                <Button title='Submit' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} onPress={() => {navigation.navigate("Successfully");}} ></Button>
             </View>
         </KeyboardAvoidingView>
 
@@ -65,8 +69,8 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        paddingHorizontal:30,
+        backgroundColor:'#FFFFFF'
     },
     header: {
         flex: 1,

@@ -4,6 +4,9 @@ import { Header } from '../../components/Header';
 import { ARROW, DOTRED, NOTIONE, NOTITWO, PROMO } from '../../../assets/images';
 import { ImageView } from '../../components/ImageView';
 import { TextView } from '../../components/TextView';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Notification">;
 type ItemData = {
     id: string;
     image: ImageSourcePropType;
@@ -48,8 +51,8 @@ const Item = ({ item, onPress }: ItemProps) => {
 };
 
 
-const Notification = () => {
-
+const Notification:React.FC<PropsType> = (props) => {
+    const { navigation } = props;
     const [data, setData] = React.useState<ItemData[]>(
         [{
             id: '1',
@@ -87,7 +90,7 @@ const Notification = () => {
     return (
         <View style={_styles.container}>
             <View>
-                <Header title='Notification' icon={ARROW} styleIcon={{ opacity: 0 }} styleView={{ marginBottom: 0 }}></Header>
+                <Header title='Notification' icon={ARROW} styleIcon={{ opacity: 0 }} styleView={{ marginBottom: 0 }} onPressBack={() => navigation.goBack()}></Header>
                 <ScrollView
                     showsHorizontalScrollIndicator={false}>
                     {data.map((item: ItemData, index: number) => (
@@ -105,7 +108,8 @@ const Notification = () => {
 const _styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 30,
+        paddingHorizontal: 30,
+        backgroundColor:'#FFFFFF', 
     },
     icon: {
         width: 30,

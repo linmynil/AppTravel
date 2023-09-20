@@ -5,7 +5,11 @@ import { KeyboardAvoidingView, Platform, StatusBar, StyleSheet, View } from 'rea
 import { TextView } from '../../components/TextView';
 import { ARROW } from '../../../assets/images';
 import { Header } from '../../components/Header';
-const CreateNewPassword = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "CreateNewPassword">;
+const CreateNewPassword:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [password, setPassword] = useState<string>('');
 
@@ -25,7 +29,7 @@ const CreateNewPassword = () => {
                     barStyle='dark-content'
                 />
                 <View style={_styles.header}>
-                    <Header title='' icon={ARROW} styleIcon={{ opacity: 0 }}></Header>
+                    <Header title='' icon={ARROW} styleIcon={{ opacity: 0 }}  onPressBack={()=>{navigation.goBack()}}></Header>
                     <TextView title='Fogot Password' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                     <TextView title="Create New Password " ></TextView>
                     <TextField label='Password' value={password} onChange={handleChangePass} hidden='pass' textStyle={{ width: 70 }} ></TextField>
@@ -34,7 +38,7 @@ const CreateNewPassword = () => {
 
                 </View>
 
-                <Button title='Save' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+                <Button title='Save' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} onPress={()=>{navigation.navigate("Login")}}></Button>
             </View>
         </KeyboardAvoidingView>
 
@@ -47,8 +51,7 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        paddingHorizontal:30, backgroundColor:"#FFFFFF"
     },
     header: {
         flex: 1,

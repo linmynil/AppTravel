@@ -5,21 +5,25 @@ import { FLASHTWO, LOGOWHITE } from '../../../assets/images';
 import { Dimensions } from 'react-native';
 import { TextView } from '../../components/TextView';
 import { Button } from '../../components/Button';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "FlashTwo">;
 
-const FlashTwo = () => {
+const FlashTwo: React.FC<PropsType> = (props) => {
+    const { navigation } = props;
     return (
         <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
-            <ImageView source={FLASHTWO} viewStyle={{ position: 'relative'}} imageStyle={{height:Dimensions.get('window').height*1.05}} ></ImageView>
+            <ImageView source={FLASHTWO} viewStyle={{ position: 'relative' }} imageStyle={{ height: Dimensions.get('window').height * 1.05 }} ></ImageView>
             <View style={_style.content}>
                 <ImageView source={LOGOWHITE} imageStyle={{ height: 20, width: 70 }} viewStyle={{ justifyContent: 'flex-start', marginLeft: 28 }}></ImageView>
                 <TextView title="Lets explore the world" textStyle={{ color: "#FFFFFF", fontSize: 45, fontWeight: "500" }} styleContainer={{ width: 320, marginLeft: 28 }}></TextView>
                 <TextView title="let's explore the world with us with just a few clicks" textStyle={{ color: "#f2f2f2", fontSize: 17, fontWeight: "400" }} styleContainer={{ width: 320, marginLeft: 28 }}></TextView>
                 <View style={_style.row}>
                     <View style={_style.line1}>
-                        <View style={[_style.line,{width:50,backgroundColor:"white"}]}>
+                        <View style={[_style.line, { width: 50, backgroundColor: "white" }]}>
                         </View>
-                        <View style={[_style.line,{width:50}]}>
+                        <View style={[_style.line, { width: 50 }]}>
                         </View>
                     </View>
                     <View style={_style.line}>
@@ -27,7 +31,7 @@ const FlashTwo = () => {
                     <View style={_style.line}>
                     </View>
                 </View>
-                <Button title='Next' styleView={{marginBottom:40}} stylePressable={{width:330}} ></Button>
+                <Button title='Next' styleView={{ marginBottom: 50 }} stylePressable={{ width: 330 }} onPress={() => {navigation.navigate("FlashThree");}}></Button>
             </View>
 
         </View>
@@ -37,7 +41,7 @@ const FlashTwo = () => {
 }
 const _style = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     content: {
         backgroundColor: 'rgba(52, 52, 52, 0.4)',
@@ -51,10 +55,10 @@ const _style = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginHorizontal: 27,
-        marginBottom:80,
-        marginTop:30
+        marginBottom: 80,
+        marginTop: 30
     },
-    line1:{
+    line1: {
         flexDirection: 'row',
         width: Dimensions.get("window").width * 0.26,
     },

@@ -31,6 +31,8 @@ import Home from './src/screens/Home-Detail/Home';
 import DetailFavorite from './src/screens/Home-Detail/DetailFavorite';
 import Category from './src/screens/Search-Category/Category';
 import Filter from './src/screens/Search-Category/Filter';
+import { NavigationContainer } from '@react-navigation/native';
+import { StackHome } from './src/Navigation/StackHome';
 
 
 const App = () => {
@@ -38,9 +40,8 @@ const App = () => {
     Keyboard.dismiss();
   }
   return (
-
+    
     <TouchableWithoutFeedback onPress={handleKeyboardDismiss}>
-      <SafeAreaView style={_styles.container}>
         {/* <Login></Login> */}
         {/* <CreateAccount></CreateAccount> */}
         {/* <InputEmail></InputEmail> */}
@@ -66,18 +67,12 @@ const App = () => {
         {/* <Notification></Notification> */}
         {/* <Home></Home> */}
         {/* <DetailFavorite></DetailFavorite> */}
-        {/* <Category></Category> */}
-        <Filter></Filter>
+    
 
-      </SafeAreaView>
+        <StackHome></StackHome>
     </TouchableWithoutFeedback>
 
   );
 };
-const _styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-});
+
 export default App;

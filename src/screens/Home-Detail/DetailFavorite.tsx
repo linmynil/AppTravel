@@ -1,20 +1,23 @@
 import React from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { ImageView } from '../../components/ImageView';
 import { ARROWD, ARROWW, FLASHFOUR, FLASHTHREE, FLASHTWO, HEART, LOCATION, LOGOWHITE, PICONE, STAR, TICKDETAIL } from '../../../assets/images';
 import { Dimensions } from 'react-native';
 import { TextView } from '../../components/TextView';
-import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Total } from '../../components/Total';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
 
-const DetailFavorite = () => {
+type PropsType = NativeStackScreenProps<StackHome, "DetailFavorite">;
+const DetailFavorite:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     return (
         <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
             <ImageView source={PICONE} viewStyle={{ position: 'relative' }} imageStyle={{ height: Dimensions.get('window').height * 1.05 }} ></ImageView>
             <View style={_style.content}>
-                <Header arrow={ARROWW} icon={HEART} styleView={{marginBottom:100}}></Header>
+                <Header arrow={ARROWW} icon={HEART} styleView={{marginBottom:100}} onPressBack={()=>navigation.goBack()}></Header>
                 <View style={_style.column}>
                     <View style={_style.row}>
                         <TextView title="FAVORITE PLACE" textStyle={{ color: "#FFFFFF", fontSize: 12, fontWeight: "bold" }} styleContainer={{ marginTop: 0 }}></TextView>
@@ -56,7 +59,10 @@ const DetailFavorite = () => {
                             <ImageView source={STAR} imageStyle={{ height: 24, width: 24 }}></ImageView>
                             <Text style={[_style.address, { fontWeight: 'bold', fontSize: 18 }]}>4.8</Text>
                         </View>
+                        <Pressable onPress={()=>{navigation.navigate("Detail")}}>
                         <ImageView source={ARROWD} imageStyle={{ height: 30, width: 30 }}></ImageView>
+                        </Pressable>
+                        
                     </View>
                 </View>
                 <Total title='Booking' price=' /Person' text='$245.00' textStyle={{color:'#FFFFFF',fontSize:15,fontWeight:'bold'}} priceStyle={{ color:'#FFFFFF',fontSize:13, marginRight:7, fontWeight:'normal'}} viewContainer={{backgroundColor:''}}></Total>

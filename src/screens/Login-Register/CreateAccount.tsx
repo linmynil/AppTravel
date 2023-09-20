@@ -6,8 +6,11 @@ import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
 import { ARROW, LINE } from '../../../assets/images';
 import { Header } from '../../components/Header';
-
-const CreateAccount = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "CreateAccount">;
+const CreateAccount:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [fistName, setFistName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
@@ -29,7 +32,7 @@ const CreateAccount = () => {
                     barStyle='dark-content'
                 />
                 <View style={_styles.header}>
-               <Header title='' icon={ARROW} styleIcon={{opacity:0}}></Header>
+               <Header title='' icon={ARROW} styleIcon={{opacity:0}} onPressBack={() => navigation.goBack()}></Header>
                 <TextView title='Create Your Account' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                 <TextView title="What's is your name? " ></TextView>
                 <TextField label='FistName' value={fistName} onChange={handleChangeFistName} textStyle={{ width: 70 }} styleView={{ marginTop: 50 }}></TextField>
@@ -41,7 +44,7 @@ const CreateAccount = () => {
                     imageStyle={_styles.line}
                     viewStyle={{ justifyContent: 'flex-start' }}
                 />      
-                <Button title='Input Email' styleView={{marginBottom:40}} stylePressable={{width:330}} ></Button>
+                <Button title='Input Email' styleView={{marginBottom:40}} stylePressable={{width:330}} onPress={() => {navigation.navigate("InputEmail");}}></Button>
                 </View>               
         </KeyboardAvoidingView>
 
@@ -54,8 +57,8 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        paddingHorizontal:30,
+        backgroundColor:'#FFFFFF'
     },
     header:{
         flex: 1,

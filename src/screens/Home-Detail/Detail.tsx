@@ -9,13 +9,17 @@ import { ScrollList } from '../../components/ScrollList';
 import { Button } from '../../components/Button';
 import { Total } from '../../components/Total';
 import { ReviewList } from '../../components/ReviewList';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
 type ItemData = {
     id: string;
     image: ImageSourcePropType;
     check: boolean;
     title: string;
 };
-const Detail = () => {
+type PropsType = NativeStackScreenProps<StackHome, "Detail">;
+const Detail:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     const [data, setData] = React.useState<ItemData[]>(
         [{
             id: '1',
@@ -86,7 +90,7 @@ const Detail = () => {
     return (
         <ScrollView style={_styles.full}>
             <View style={_styles.container}>
-                <Header title='Kuta Beach' icon={HEART}></Header>
+                <Header title='Kuta Beach' icon={HEART} onPressBack={()=>{navigation.goBack()}}></Header>
                 <View>
                     <ImageView source={PICONE} imageStyle={{ width: 335, height: 250, resizeMode: 'cover', borderRadius: 20 }}></ImageView>
                     <View style={_styles.content}>

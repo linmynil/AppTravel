@@ -1,8 +1,8 @@
 import React from 'react';
-import { ImageSourcePropType, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import {  Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import { TextView } from './TextView';
 import { ImageView } from './ImageView';
-import { ONESTAR, STAR } from '../../assets/images';
+import {STAR } from '../../assets/images';
 
 export type TitleProps = {
   left: string,
@@ -10,11 +10,11 @@ export type TitleProps = {
   styleright?: StyleProp<ViewStyle>,
   star?: string,
   styleContainer?: StyleProp<ViewStyle>,
-
+  onPressRight?:()=>void;
 }
 
 const _Title: React.FC<TitleProps> = (props) => {
-  const { left, right, star } = props;
+  const { left, right, star,onPressRight } = props;
   return star ?
     (
       <View style={StyleSheet.flatten([_style.container, props.styleContainer])}>
@@ -31,7 +31,9 @@ const _Title: React.FC<TitleProps> = (props) => {
     (
       <View style={StyleSheet.flatten([_style.container, props.styleContainer])}>
         <TextView title={left} textStyle={{ fontSize: 18 }} styleContainer={{ marginTop: 0}}></TextView>
+        <Pressable  onPress={onPressRight}>
         <Text style={StyleSheet.flatten([_style.text, props.styleright])}>{right}</Text>
+        </Pressable>        
       </View>
     );
 }

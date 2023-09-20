@@ -7,15 +7,20 @@ import { TextTitle } from '../../components/TextTitle';
 import { CategoryList } from '../../components/CategoryList';
 import { PopularList } from '../../components/PopularList';
 import { FavoriteList } from '../../components/FavoriteList';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+
+type PropsType = NativeStackScreenProps<StackHome, "Home">;
 type ItemData = {
     id: string;
     image: ImageSourcePropType;
     check: boolean;
     title: string;
 };
-const Home = () => {
+const Home:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     const handleNotification = () => {
-
+       navigation.navigate("Notification")
     }
     const [search, setSearch] = useState<string>('');
 
@@ -159,28 +164,36 @@ const Home = () => {
        ]
     );
     const handleDetail = (index: number) => {
-       
+        navigation.navigate("DetailFavorite")
     }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={_styles.container}>
-            <View style={_styles.row}>
+            <View style={[_styles.row,{marginEnd:30, marginTop:30,}]}>
                 <View style={_styles.row}>
                     <Image source={PICONE} style={_styles.avatar}></Image>
                     <Text style={_styles.name} >Hello, Pristia !</Text>
                 </View>
                 <Pressable onPress={handleNotification}>
-                    <Image source={RING} style={_styles.notification}></Image>
+                    <Image source={RING} style={_styles.notification} ></Image>
                 </Pressable>
             </View>
             <TextView title="Where do you " textStyle={{fontSize:30}} ></TextView>
             <TextView title="want to explore today?" textStyle={{fontSize:30}} styleContainer={{marginTop:0}} ></TextView>
             <SearchView placeholder='Search destination' value={search} onChangetext={handleChangeText} onPress={handleSearch}></SearchView>
-            <TextTitle left='Choose Category' right='See all' styleContainer={{marginTop:0}}></TextTitle>
-            <CategoryList data={data} onPress={handleSelectCategory}></CategoryList>
-            <TextTitle left='Favorite Place' right='Explore'></TextTitle>
+            <View>
+            <TextTitle left='Choose Category' right='See all' styleContainer={{marginTop:0,marginEnd:30}} 
+            onPressRight={()=>{navigation.navigate("Category")}} 
+            ></TextTitle>
+            <CategoryList data={data} onPress={handleSelectCategory} ></CategoryList>
+            </View>         
+            <TextTitle left='Favorite Place' right='Explore' styleContainer={{marginEnd:30}} 
+            // onPressRight={()=>{navigation.navigate("BookingStack")}}
+            ></TextTitle>
             <FavoriteList data={favorite} onPress={handleDetail}></FavoriteList>
-            <TextTitle left='Popular Package' right='See All'></TextTitle>
+            <TextTitle left='Popular Package' right='See All' styleContainer={{marginEnd:30}} 
+            // onPressRight={()=>{navigation.navigate("")}}
+            ></TextTitle>
             <PopularList data={popular} onPress={handleSelectPopular}></PopularList>
         </ScrollView>
     );
@@ -188,13 +201,14 @@ const Home = () => {
 const _styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 30
+        backgroundColor:'#FFFFFF',
+        paddingStart:30,
+        paddingTop:20
     },
     row: {
         flexDirection: 'row',
         justifyContent:'space-between',
         alignItems:'center',
-        marginTop:20,
         marginBottom:5
     },
     name:{

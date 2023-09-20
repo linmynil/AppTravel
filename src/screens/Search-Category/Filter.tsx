@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Total } from '../../components/Total';
 import { ImageSourcePropType, ScrollView, StyleSheet, View } from 'react-native';
 import { Header } from '../../components/Header';
-import { ARROW, CAR, DONE, FIVESTAR, FLY, FOURSTAR, HEART, HOTEL, LINE, ONESTAR, RANGE, THREESTAR, TWOSTAR } from '../../../assets/images';
-import { TextField } from '../../components/TextField';
-import { ImageView } from '../../components/ImageView';
+import { ARROW, DONE, FIVESTAR, FLY, FOURSTAR, HOTEL, ONESTAR, THREESTAR, TWOSTAR } from '../../../assets/images';
 import { TextTitle } from '../../components/TextTitle';
 import { ScrollList } from '../../components/ScrollList';
 import { StarList } from '../../components/StarList';
-import Slider from '@react-native-community/slider';
-
-const Filter = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Filter">;
+const Filter:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     type ItemData = {
         id: string;
@@ -95,30 +95,22 @@ const Filter = () => {
         newStar[index] = item;
         setStar(newStar)
     }
-
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={_style.container}>
             <View>
-                <Header title='Filter' icon={ARROW} styleIcon={{ opacity: 0 }} styleView={{ marginBottom: 0 }}></Header>
+                <Header title='Filter' icon={ARROW} styleIcon={{ opacity: 0 }} styleView={{ marginBottom: 0 }} onPressBack={()=>{navigation.goBack()}}></Header>
                 <TextTitle left="Range Price" styleright={{ opacity: 0 }}></TextTitle>
-                <Slider
-                    style={{ width: 200, height: 40 }}
-                    minimumValue={0}
-                    maximumValue={1}
-                    minimumTrackTintColor="#000000"
-                    maximumTrackTintColor="#000000"
-                    // lowerLimit={200}
-                    // step={300}
-                    // thumbTintColor=""
-                    thumbImage={RANGE}
-                    
-                />
+
+              
+
+
+
                 <TextTitle left="Star Review" styleright={{ opacity: 0 }}></TextTitle>
                 <StarList data={star} onPress={handleSelectStar} ></StarList>
                 <TextTitle left="Included" styleright={{ opacity: 0 }} styleContainer={{ marginTop: 10 }}></TextTitle>
                 <ScrollList data={data} onPress={handleSelectIncluded}></ScrollList>
             </View>
-            <View>
+            <View >
                 <Total left='Clear All' title='Apply' viewContainer={{ marginTop: 40 }} ></Total>
             </View>
         </ScrollView>
@@ -130,7 +122,8 @@ const _style = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        marginStart: 30,
+        paddingStart: 30,
+        backgroundColor:"#FFFFFF"
     },
     line: {
         height: 4,

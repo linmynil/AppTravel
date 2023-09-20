@@ -6,9 +6,12 @@ import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
 import { ARROW} from '../../../assets/images';
 import { Header } from '../../components/Header';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "FogotPassword">;
+const FogotPassword:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
-
-const FogotPassword = () => {
 
     const [email, setEmail] = useState<string>('');
 
@@ -27,12 +30,12 @@ const FogotPassword = () => {
                     barStyle='dark-content'
                 />
                 <View style={_styles.header}>
-                <Header title='' icon={ARROW} styleIcon={{opacity:0}}></Header>
+                <Header title='' icon={ARROW} styleIcon={{opacity:0}} onPressBack={()=>{navigation.goBack()}} ></Header>
                     <TextView title='Input Your Email' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                     <TextView title="Forgot Your Password? " ></TextView>
                     <TextField label='Email' value={email} onChange={handleChangeEmail} styleView={{ marginTop: 50 }}></TextField>
                 </View>
-                <Button title='Submit' styleView={{ marginBottom: 40}}stylePressable={{width:330}} ></Button>
+                <Button title='Submit' styleView={{ marginBottom: 40}}stylePressable={{width:330}} onPress={()=>{navigation.navigate("CreateNewPassword")}} ></Button>
             </View>
         </KeyboardAvoidingView>
 
@@ -45,8 +48,8 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        paddingHorizontal:30, 
+        backgroundColor:'#FFFFFF'
     },
     header: {
         flex: 1,

@@ -49,7 +49,7 @@ const _style = StyleSheet.create({
     height: 55,
     marginVertical: 20,
     width: Dimensions.get('window').width*0.84,
-
+    marginTop:40
   },
   back: {
     height: 24,

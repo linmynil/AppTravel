@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { ImageSourcePropType, StyleSheet, View } from 'react-native';
-import { ListTip } from '../../components/ListTrip';
-import { TextView } from '../../components/TextView';
 import { SearchView } from '../../components/SearchView';
 import { BEACH, CAMPING, FILTER, FISHING, FOREST, FOURSTAR, KUTARESORT, MANDALIKA, MOUNTIAN, OCEAN, PICONE } from '../../../assets/images';
 import { Header } from '../../components/Header';
 import { CategoryList } from '../../components/CategoryList';
 import { PopularList } from '../../components/PopularList';
-const Category = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Category">;
+const Category:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     const [search, setSearch] = useState<string>('');
 
     const handleChangeText = (value: string) => {
@@ -123,7 +125,7 @@ const Category = () => {
     }
     return (
         <View style={_styles.container}>
-            <Header title='Category' icon={FILTER} styleView={{ marginBottom: -10 }}></Header>
+            <Header title='Category' icon={FILTER} styleView={{ marginBottom: -10 }} onPressBack={()=>{navigation.goBack()}} onPressIcon={()=>{navigation.navigate("Filter")}}></Header>
             <SearchView placeholder='Search destination' value={search} onChangetext={handleChangeText} onPress={handleSearch}></SearchView>
             <CategoryList data={data} onPress={handleSelectCategory} viewStyle={{marginBottom:30}}></CategoryList>
             <PopularList data={popular} onPress={handleSelectPopular}></PopularList>
@@ -133,7 +135,8 @@ const Category = () => {
 const _styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginStart:30
+        paddingStart:30,
+        backgroundColor:"#FFFFFF",
     },
 
 })

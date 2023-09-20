@@ -6,7 +6,11 @@ import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
 import { ARROW, LINE } from '../../../assets/images';
 import { Header } from '../../components/Header';
-const CreatePassword = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "CreatePassword">;
+const CreatePassword:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [password, setPassword] = useState<string>('');
     
@@ -25,7 +29,7 @@ const CreatePassword = () => {
                     barStyle='dark-content'
                 />
                 <View style={_styles.header}>
-                <Header title='' icon={ARROW} styleIcon={{opacity:0}}></Header>
+                <Header title='' icon={ARROW} styleIcon={{opacity:0}} onPressBack={() => navigation.goBack()}></Header>
                     <TextView title='Create Your Account' textStyle={{ color: "#BABABA", fontSize: 17, fontWeight: "400" }} styleContainer={{ alignItems: 'flex-start' }}></TextView>
                     <TextView title="Create a password " ></TextView>
                     <TextField label='Password' value={password} onChange={handleChangePass} hidden='pass' textStyle={{ width: 70 }} ></TextField>
@@ -37,7 +41,7 @@ const CreatePassword = () => {
                     imageStyle={_styles.line}
                     viewStyle={{ justifyContent: 'flex-start' }}
                 />
-                <Button title='Verification' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+                <Button title='Verification' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} onPress={() => {navigation.navigate("Verification");}}></Button>
             </View>
         </KeyboardAvoidingView>
 
@@ -50,8 +54,8 @@ const _styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-around',
-        marginStart: 30,
-        marginEnd: 30,
+        paddingHorizontal:30,
+        backgroundColor:'#FFFFFF'
     },
     header: {
         flex: 1,

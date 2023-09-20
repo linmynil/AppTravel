@@ -5,8 +5,11 @@ import { FLASHTHREE, LOGOWHITE } from '../../../assets/images';
 import { Dimensions } from 'react-native';
 import { TextView } from '../../components/TextView';
 import { Button } from '../../components/Button';
-
-const FlashThree = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "FlashThree">;
+const FlashThree:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     return (
         <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
@@ -27,7 +30,7 @@ const FlashThree = () => {
                     <View style={_style.line}>
                     </View>
                 </View>
-                <Button title='Next' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+                <Button title='Next' styleView={{ marginBottom: 50 }} stylePressable={{width:330}}  onPress={() => {navigation.navigate("FlashFour");}} ></Button>
             </View>
 
         </View>

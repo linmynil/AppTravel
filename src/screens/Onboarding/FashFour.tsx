@@ -5,8 +5,11 @@ import { FLASHFOUR, LOGOWHITE } from '../../../assets/images';
 import { Dimensions } from 'react-native';
 import { TextView } from '../../components/TextView';
 import { Button } from '../../components/Button';
-
-const FlashFour = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "FlashFour">;
+const FlashFour:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
     return (
         <View style={_style.container} >
             <StatusBar translucent={true} backgroundColor='transparent'></StatusBar>
@@ -27,7 +30,7 @@ const FlashFour = () => {
                         </View>
                     </View>
              </View>
-                <Button title='Get Started' styleView={{ marginBottom: 40 }} stylePressable={{width:330}} ></Button>
+                <Button title='Get Started' styleView={{ marginBottom: 50 }} stylePressable={{width:330}}  onPress={() => {navigation.navigate("Login");}} ></Button>
             </View>
 
         </View>

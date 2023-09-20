@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Alert, Dimensions, Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { ListTip } from '../../components/ListTrip';
 import { TextView } from '../../components/TextView';
-import { SearchView } from '../../components/SearchView';
 import { CardProfile } from '../../components/CardProfile';
 import { ImageView } from '../../components/ImageView';
 import { FAQ, LANGUAGE, PICONE, PROFILE, RING } from '../../../assets/images';
 import { Total } from '../../components/Total';
-const Profile = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Profile">;
+const Profile:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [modalVisible, setModalVisible] = useState(false);
     const handleModal = () => {
@@ -15,7 +17,7 @@ const Profile = () => {
     }
     return (
         <View style={_styles.container}>
-            <TextView title="Your Profile " textStyle={{ fontSize: 30 }} styleContainer={{ marginTop: 30, marginBottom: 20 }} ></TextView>
+            <TextView title="Your Profile " textStyle={{ fontSize: 30 }} styleContainer={{ marginTop: 50, marginBottom: 20 }} ></TextView>
             <View style={_styles.row}>
                 <ImageView source={PICONE} imageStyle={{ width: 50, height: 50, borderRadius: 30 }} viewStyle={{ marginRight: 20 }}></ImageView>
                 <View style={_styles.column}>
@@ -28,7 +30,7 @@ const Profile = () => {
             </View>
             <ScrollView>
                 <CardProfile title='Personal Information' image={PROFILE}></CardProfile>
-                <CardProfile title='Notification' image={RING} styleImage={{ width: 27, height: 27 }}></CardProfile>
+                <CardProfile title='Notification' image={RING} styleImage={{ width: 27, height: 27 }} onPress={()=>{navigation.navigate("Notification")}}></CardProfile>
                 <CardProfile title='FAQ' image={FAQ} styleImage={{ width: 21 }}></CardProfile>
                 <CardProfile title='Dark Mode' image={PROFILE} toggle={true}></CardProfile>
                 <CardProfile title='Language' image={LANGUAGE} ></CardProfile>
@@ -51,7 +53,7 @@ const Profile = () => {
                                 </View>
                                 <Text style={_styles.text}> account?</Text>
                                 <Text style={_styles.textStyle}>Hide Modal</Text>
-                                <Total left='Logout' title='Cancel' onPressRight={() => setModalVisible(!modalVisible)}></Total>
+                                <Total left='Logout' title='Cancel' onPressLeft={()=>{navigation.navigate("Login")}}onPressRight={() => setModalVisible(!modalVisible)}></Total>
                             </View>
                         </View>
                     </View>
@@ -64,7 +66,8 @@ const Profile = () => {
 const _styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 30
+        paddingHorizontal: 30,
+        backgroundColor:"#FFFFFF"
     },
     text: {
         color: '#BABABA',

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/Button';
 import { TextField } from '../../components/TextField';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { Pressable, StatusBar, StyleSheet, View } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { TextView } from '../../components/TextView';
 import { ImageView } from '../../components/ImageView';
 import { FB, GG, IG, LOGOBLACK } from '../../../assets/images';
-
-const Login = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StackHome } from '../../Navigation/StackHome';
+type PropsType = NativeStackScreenProps<StackHome, "Login">;
+const Login:React.FC<PropsType>= (props) => {
+    const { navigation } = props;
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -23,6 +26,7 @@ const Login = () => {
         setEmail(value);
     }
     return (
+        <View style={_styles.login}>
         <View style={_styles.container}>
             <StatusBar
                 animated={true}
@@ -48,11 +52,14 @@ const Login = () => {
                     />
                     <TextView title='Remember me' textStyle={{ color: "#c7c7c7", fontSize: 15, fontWeight: "normal" }}></TextView>
                 </View>
-                <TextView title='Fogot password' textStyle={{ color: "#c7c7c7", fontSize: 15, fontWeight: "normal" }}></TextView>
+                <Pressable onPress={() => {navigation.navigate("FogotPassword");}}>
+                <TextView title='Fogot password' textStyle={{ color: "#c7c7c7", fontSize: 15, fontWeight: "normal" }} ></TextView>
+                </Pressable>
+                
             </View>
 
-            <Button title='Create Account' stylePressable={{ backgroundColor: 'white', borderColor: "#d6d6d6", borderWidth: 1,width:330 }} styleView={{marginBottom:20}} ></Button>
-            <Button title='Sign in' styleView={{marginBottom:20}} stylePressable={{width:330}}></Button>
+            <Button title='Create Account' stylePressable={{ backgroundColor: 'white', borderColor: "#d6d6d6", borderWidth: 1,width:330 }} styleView={{marginBottom:20}} onPress={() => {navigation.navigate("CreateAccount");}}></Button>
+            <Button title='Sign in' styleView={{marginBottom:20}} stylePressable={{width:330}}  onPress={() => {navigation.navigate("Successfully");}} ></Button>
 
             <View style={[_styles.row,{marginTop:40}]}>
                 <View style={_styles.card}>
@@ -78,12 +85,18 @@ const Login = () => {
 
 
         </View>
+        </View>
+
 
     );
 }
 const _styles = StyleSheet.create({
+    login: {
+        flex: 1,
+        backgroundColor: '#FFFFFF',
+      },
     container:{
-        marginHorizontal:30
+        marginHorizontal:30,
     },
     icon: {
         height: 35,

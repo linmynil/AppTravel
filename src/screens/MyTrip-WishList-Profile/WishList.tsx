@@ -68,7 +68,7 @@ const WishList = () => {
     }
     return (
         <View style={_styles.container}>
-            <TextView title="Your Wishlist " textStyle={{ fontSize: 30 }} styleContainer={{ marginTop: 30 }} ></TextView>
+            <TextView title="Your Wishlist " textStyle={{ fontSize: 30 }} styleContainer={{ marginTop: 50 }} ></TextView>
             <SearchView placeholder='Search destination' value={search} onChangetext={handleChangeText} onPress={handleSearch}></SearchView>
             <PopularList data={data} onPress={handleSelectPopular}></PopularList>
         </View>
@@ -77,7 +77,8 @@ const WishList = () => {
 const _styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 30
+        paddingHorizontal: 30,
+        backgroundColor:"#FFFFFF"
     },
 
 })

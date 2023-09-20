@@ -75,7 +75,7 @@ const _styles = StyleSheet.create({
     image: {
         resizeMode: 'cover',
         borderRadius: 20,
-        width: Dimensions.get('window').width * 0.45,
+        width: Dimensions.get('window').width * 0.5,
         height: 220,
     },
     heart: {
@@ -91,7 +91,7 @@ const _styles = StyleSheet.create({
         justifyContent: 'center'
     },
     item: {
-        width: Dimensions.get('window').width * 0.45,
+        width: Dimensions.get('window').width * 0.5,
         height: 220,
         borderRadius: 20,
         marginRight: 20,
@@ -104,7 +104,7 @@ const _styles = StyleSheet.create({
     },
     column: {
         backgroundColor: 'rgba(52, 52, 52, 0.2)',
-        width: Dimensions.get('window').width * 0.45,
+        width: Dimensions.get('window').width * 0.5,
         borderRadius: 20,
         height: 220,
         position: 'absolute',
